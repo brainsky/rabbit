@@ -33,4 +33,20 @@ const (
 	//关键词
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
+
+	//添加中文Token
+	VAR        = "变量"
+	FUNCTIONCN = "函数"
 )
+
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
