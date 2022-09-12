@@ -50,3 +50,18 @@ func LookupIdent(ident string) TokenType {
 	}
 	return IDENT
 }
+
+var keywordsUTF8 = map[string]TokenType{
+	"变量": VAR,
+	"函数": FUNCTIONCN,
+}
+
+func LookupUTFIdent(ident string) TokenType {
+
+	if tok, ok := keywordsUTF8[ident]; ok {
+		//如果是中文TOKEN则返回该Token
+		return tok
+	}
+	//否则返回为标识符
+	return IDENT
+}
